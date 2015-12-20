@@ -6,7 +6,7 @@ local trace = require "trace"
 
 --
 
-local rep = "\1\7\0\1\0\23\1\0Primary script unknown\x0A\0\1\6\0\1\0Q\7\0Status: 200 Not Found\13\x0AContent-type: text/html; charset=UTF-8\13\x0A\13\x0AHello, World!!!\x0A\0\0\0\0\0\0\0\1\3\0\1\0\8\0\0\0\0\0\0\0\0\0\0"
+local rep = "\1\7\0\1\0\23\1\0Primary script unknown\x0A\0\1\6\0\1\0Q\7\0Status: 200 Was Found\13\x0AContent-type: text/html; charset=UTF-8\13\x0A\13\x0AHello, World!!!\x0A\0\0\0\0\0\0\0\1\3\0\1\0\8\0\0\0\0\0\0\0\0\0\0"
 
 local listener = assert(net.ip4.tcp.socket())
 
