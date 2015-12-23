@@ -215,3 +215,9 @@ printf("TODO: FCGI_GET_VALUES_RESULT\n");
         return 2;
     }
 }
+
+// arg#1 - table with packets(tables)
+// it will return concat'd binary string or nil, es, en
+static int lua_fcgi_pack( lua_State *L ) {
+    lua_fail(L, "TODO", 0);
+}
