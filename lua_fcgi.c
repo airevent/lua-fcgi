@@ -9,6 +9,12 @@ LUAMOD_API int luaopen_fcgi( lua_State *L ) {
 
 //
 
+// arg#1 - table with packets(tables)
+// it will return concat'd binary string or nil, es, en
+static int lua_fcgi_pack( lua_State *L ) {
+    lua_fail(L, "TODO", 0);
+}
+
 // arg#1 - str
 // will parse str and divide records
 // will return records and the remaining unused bytes count
@@ -214,10 +220,4 @@ printf("TODO: FCGI_GET_VALUES_RESULT\n");
         lua_pushinteger(L, len-pos);
         return 2;
     }
-}
-
-// arg#1 - table with packets(tables)
-// it will return concat'd binary string or nil, es, en
-static int lua_fcgi_pack( lua_State *L ) {
-    lua_fail(L, "TODO", 0);
 }

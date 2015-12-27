@@ -81,13 +81,13 @@ typedef struct FCGI_UnknownTypeBody {
 
 LUAMOD_API int luaopen_fcgi( lua_State *L );
 
-static int lua_fcgi_unpack( lua_State *L );
 static int lua_fcgi_pack( lua_State *L );
+static int lua_fcgi_unpack( lua_State *L );
 
 //
 
 static const luaL_Reg __index[] = {
-    {"unpack", lua_fcgi_unpack},
     {"pack", lua_fcgi_pack},
+    {"unpack", lua_fcgi_unpack},
     {NULL, NULL}
 };
