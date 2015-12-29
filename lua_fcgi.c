@@ -4,6 +4,11 @@
 
 LUAMOD_API int luaopen_fcgi( lua_State *L ) {
     luaL_newlib(L, __index);
+
+    lua_newtable(L);
+        #include "lua_fcgi_flags.c"
+    lua_setfield(L, -2, "f");
+
     return 1;
 }
 
