@@ -84,6 +84,9 @@ LUAMOD_API int luaopen_fcgi( lua_State *L );
 static int lua_fcgi_pack( lua_State *L );
 static int lua_fcgi_unpack( lua_State *L );
 
+static void lua_fcgi_addheader( luaL_Buffer *B, int id, int type, size_t content_len );
+static void lua_fcgi_addpad( luaL_Buffer *B, size_t content_len );
+
 //
 
 static const luaL_Reg __index[] = {
