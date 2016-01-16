@@ -14,7 +14,7 @@ LUAMOD_API int luaopen_fcgi( lua_State *L ) {
 
 //
 
-// arg#1 - table with packets(tables)
+// arg#1 - table, that represents fcgi packet
 // it will return concat'd binary string or nil, es, en
 static int lua_fcgi_pack( lua_State *L ) {
     luaL_checktype(L, 1, LUA_TTABLE);
@@ -113,6 +113,8 @@ static int lua_fcgi_unpack( lua_State *L ) {
     int val_len;
     size_t kv_offset;
 
+    lua_newtable(L);
+
     while ( pos + FCGI_HEADER_LEN <= len ) {
         memcpy(&header, &str[pos], FCGI_HEADER_LEN);
         pos += FCGI_HEADER_LEN;
@@ -125,10 +127,6 @@ static int lua_fcgi_unpack( lua_State *L ) {
         } else {
             if ( header.type < FCGI_MINTYPE || header.type > FCGI_MAXTYPE ) {
                 header.type = FCGI_UNKNOWN_TYPE;
-            }
-
-            if ( records_found==0 ) {
-                lua_newtable(L); // table for all found records - lazy init
             }
 
             records_found++;
@@ -263,14 +261,13 @@ static int lua_fcgi_unpack( lua_State *L ) {
         }
     }
 
-    if ( records_found > 0 ) {
-        lua_pushinteger(L, len-pos);
-        return 2;
-    } else {
+    if ( !records_found ) {
         lua_pushnil(L);
-        lua_pushinteger(L, len-pos);
-        return 2;
     }
+
+    lua_pushinteger(L, len-pos);
+
+    return 2;
 }
 
 //
